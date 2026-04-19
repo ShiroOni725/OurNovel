@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - NovelKita</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .profile-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .profile-card {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border);
+        }
+
+        .profile-avatar-section {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            flex-shrink: 0;
+        }
+
+        .profile-avatar-info h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .role-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .role-author {
+            background: var(--primary-bg);
+            color: var(--primary);
+        }
+
+        .role-reader {
+            background: #e0f2fe;
+            color: #0277bd;
+        }
+
+        [data-theme="dark"] .role-reader {
+            background: #0c3652;
+            color: #64b5f6;
+        }
+
+        .profile-form .input-group {
+            margin-bottom: 20px;
+        }
+
+        .profile-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .profile-form input,
+        .profile-form textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font);
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .profile-form input:focus,
+        .profile-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(124,58,237,0.1);
+        }
+
+        .profile-form input:disabled {
+            background: var(--bg-tertiary);
+            color: var(--text-muted);
+            cursor: not-allowed;
+        }
+
+        .profile-form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .become-author-btn {
+            width: 100%;
+            margin-top: 8px;
+        }
+
+        .author-section {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            border: 1px solid var(--border);
+        }
+
+        .author-section h3 {
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        .author-section p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo" onclick="window.location.href='home.html'">Buku NovelKita</div>
+            <div class="nav-links" id="navLinks"></div>
+            <button class="menu-toggle" id="menuToggle">hamburger</button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="profile-container">
+            <div class="profile-card">
+                <div class="profile-avatar-section">
+                    <div class="profile-avatar" id="profileAvatar">P</div>
+                    <div class="profile-avatar-info">
+                        <h2 id="profileDisplayName">-</h2>
+                        <span class="role-badge" id="profileRole">-</span>
+                    </div>
+                </div>
+
+                <form class="profile-form" id="profileForm">
+                    <div class="input-group">
+                        <label>Username</label>
+                        <input type="text" id="profileUsername" disabled>
+                    </div>
+                    <div class="input-group">
+                        <label>Email</label>
+                        <input type="email" id="profileEmail" disabled>
+                    </div>
+                    <div class="input-group">
+                        <label>Bio</label>
+                        <textarea id="profileBio" placeholder="Ceritakan sedikit tentang dirimu..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Simpan Perubahan</button>
+                </form>
+            </div>
+
+            <div class="author-section" id="becomeAuthorSection" style="display:none;">
+                <h3>Ingin menjadi penulis?</h3>
+                <p>Daftarkan dirimu sebagai penulis dan mulai publish novel pertamamu!</p>
+                <button class="btn-primary become-author-btn" id="becomeAuthorBtn">Jadi Penulis</button>
+            </div>
+        </div>
+    </main>
+
+    <div id="toast-container"></div>
+
+    <script src="mock-data.js"></script>
+    <script src="utils.js"></script>
+    <script src="theme.js"></script>
+    <script src="auth.js"></script>
+    <script src="profile.js"></script>
+</body>
+</html>

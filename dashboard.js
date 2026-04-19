@@ -14,7 +14,6 @@ function loadUser() {
         }
         updateNavbar();
         loadMyNovels();
-        updateStats();
     } else {
         window.location.href = 'index.html';
     }
@@ -23,22 +22,22 @@ function loadUser() {
 function updateNavbar() {
     const navLinks = document.getElementById('navLinks');
     if (!navLinks) return;
-    
+
     navLinks.innerHTML = `
-        <a href="home.html" class="nav-link">🏠 Home</a>
-        <a href="dashboard.html" class="nav-link">✍️ Dashboard</a>
-        <a href="favorites.html" class="nav-link">❤️ Rak Baca</a>
-        <a href="profile.html" class="nav-link">👤 Profile</a>
-        <button id="themeToggle" class="theme-btn">🌙</button>
-        <a href="#" id="logoutNavBtn" class="nav-link">🚪 Logout</a>
+        <a href="home.html" class="nav-link">Home</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="favorites.html" class="nav-link">Rak Baca</a>
+        <a href="profile.html" class="nav-link">Profile</a>
+        <button id="themeToggle" class="theme-btn">Tema</button>
+        <a href="#" id="logoutNavBtn" class="nav-link">Logout</a>
     `;
-    
+
     document.getElementById('logoutNavBtn')?.addEventListener('click', () => {
         localStorage.removeItem('novelkita_currentUser');
         window.location.href = 'index.html';
     });
     document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
-    
+
     document.getElementById('menuToggle')?.addEventListener('click', () => {
         navLinks.classList.toggle('active');
     });
@@ -48,10 +47,13 @@ function loadMyNovels() {
     const allNovels = getNovels();
     myNovels = allNovels.filter(n => n.author_id === currentUser.id);
     renderNovelsList();
+    updateStats();
 }
 
 function renderNovelsList() {
     const container = document.getElementById('novelsList');
+    if (!container) return;
+
     if (!myNovels.length) {
         container.innerHTML = `
             <div class="empty-state" style="padding: 40px;">
@@ -63,7 +65,7 @@ function renderNovelsList() {
         `;
         return;
     }
-    
+
     container.innerHTML = myNovels.map((novel, index) => `
         <div class="novel-row">
             <div>${index + 1}</div>
@@ -71,15 +73,15 @@ function renderNovelsList() {
             <div>${novel.genre}</div>
             <div>
                 <span class="novel-status status-${novel.status}">
-                    ${novel.status === 'published' ? '📢 Published' : novel.status === 'draft' ? '✏️ Draft' : '✅ Completed'}
+                    ${novel.status === 'published' ? 'Published' : novel.status === 'draft' ? 'Draft' : 'Completed'}
                 </span>
             </div>
             <div>${novel.views || 0}</div>
             <div class="novel-actions">
-                <button class="action-icon" onclick="editNovel(${novel.id})" title="Edit">✏️</button>
-                <button class="action-icon" onclick="manageChapters(${novel.id})" title="Chapter">📑</button>
-                <button class="action-icon" onclick="viewNovel(${novel.id})" title="View">👁️</button>
-                <button class="action-icon" onclick="deleteNovel(${novel.id})" title="Hapus">🗑️</button>
+                <button class="action-icon" onclick="editNovel(${novel.id})" title="Edit">Edit</button>
+                <button class="action-icon" onclick="manageChapters(${novel.id})" title="Chapter">Chapter</button>
+                <button class="action-icon" onclick="viewNovel(${novel.id})" title="View">View</button>
+                <button class="action-icon" onclick="deleteNovel(${novel.id})" title="Hapus">Hapus</button>
             </div>
         </div>
     `).join('');
@@ -90,8 +92,11 @@ function updateStats() {
     const totalChapters = myNovels.reduce((sum, n) => sum + (n.chapters?.length || 0), 0);
     const totalViews = myNovels.reduce((sum, n) => sum + (n.views || 0), 0);
     const totalLikes = myNovels.reduce((sum, n) => sum + (n.likes || 0), 0);
-    
-    document.getElementById('dashboardStats').innerHTML = `
+
+    const statsEl = document.getElementById('dashboardStats');
+    if (!statsEl) return;
+
+    statsEl.innerHTML = `
         <div class="stat-card">
             <div class="stat-card-value">${totalNovels}</div>
             <div class="stat-card-label">Novel</div>
@@ -116,7 +121,7 @@ function editNovel(id) {
 }
 
 function manageChapters(id) {
-    window.location.href = `novel-detail.html?id=${id}`;
+    window.location.href = `chapter-edit.html?novelId=${id}`;
 }
 
 function viewNovel(id) {
@@ -124,10 +129,17 @@ function viewNovel(id) {
 }
 
 function deleteNovel(id) {
-    if (confirm('Yakin ingin menghapus novel ini? Semua chapter akan ikut terhapus!')) {
-        showToast("Novel dihapus (mock)", "info");
+    if (!confirm('Yakin ingin menghapus novel ini? Semua chapter akan ikut terhapus!')) return;
+
+    const index = MOCK_NOVELS.findIndex(n => n.id === id);
+    if (index !== -1) {
+        const novel = MOCK_NOVELS[index];
+        if (novel.chapters) {
+            novel.chapters.forEach(ch => delete MOCK_CHAPTERS[ch.id]);
+        }
+        MOCK_NOVELS.splice(index, 1);
+        showToast("Novel berhasil dihapus.", "success");
         loadMyNovels();
-        updateStats();
     }
 }
 
