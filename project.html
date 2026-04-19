@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rak Bacaan - NovelKita</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo" onclick="window.location.href='home.html'">📚 NovelKita</div>
+            <div class="nav-links" id="navLinks"></div>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <h1>❤️ Rak Bacaan Saya</h1>
+        <p style="margin-bottom: 24px; color: var(--text-muted);">Novel yang kamu simpan akan muncul di sini</p>
+        
+        <div class="novels-grid" id="favoritesGrid"></div>
+    </main>
+
+    <div id="toast-container"></div>
+
+    <script src="mock-data.js"></script>
+    <script src="utils.js"></script>
+    <script src="theme.js"></script>
+    <script src="auth.js"></script>
+    <script src="favorites.js"></script>
+</body>
+</html>

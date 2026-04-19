@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baca Novel - NovelKita</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .reading-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+        
+        .chapter-title {
+            font-size: 28px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .chapter-content {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 60px;
+        }
+        
+        .chapter-content p {
+            margin-bottom: 24px;
+        }
+        
+        .reading-nav {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+        
+        .reading-nav button {
+            flex: 1;
+        }
+        
+        .reading-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+            background: var(--bg-primary);
+            padding: 8px 16px;
+            border-radius: 40px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+        }
+        
+        .reading-controls button {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: background 0.2s;
+        }
+        
+        .reading-controls button:hover {
+            background: var(--bg-secondary);
+        }
+        
+        @media (max-width: 768px) {
+            .chapter-content {
+                font-size: 16px;
+            }
+            
+            .chapter-title {
+                font-size: 22px;
+            }
+            
+            .reading-nav {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">📚 NovelKita</div>
+            <div class="nav-links" id="navLinks"></div>
+            <button class="menu-toggle">☰</button>
+        </div>
+    </nav>
+
+    <main class="reading-container" id="readingContent">
+        <div id="chapterView"></div>
+    </main>
+
+    <div class="reading-controls">
+        <button id="decreaseFontBtn" title="Perkecil teks">A-</button>
+        <button id="increaseFontBtn" title="Perbesar teks">A+</button>
+        <button id="themeToggleReading" title="Mode gelap/terang">🌙</button>
+    </div>
+
+    <script src="mock-data.js"></script>
+    <script src="utils.js"></script>
+    <script src="theme.js"></script>
+    <script src="auth.js"></script>
+    <script src="read.js"></script>
+</body>
+</html>

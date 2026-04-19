@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>NovelKita - Baca & Tulis Novel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">📚</span>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="home.html" class="nav-link">Home</a>
+                <a href="#" class="nav-link" id="loginNavBtn">Masuk</a>
+            </div>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+        </div>
+    </nav>
+
+    <!-- LANDING PAGE -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Tulis Ceritamu.<br>Baca Karya Orang Lain.</h1>
+                <p class="hero-desc">NovelKita adalah platform tempat penulis dan pembaca bertemu. Tulis novelmu, publikasikan, dan temukan ribuan cerita menarik dari penulis lain.</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" id="registerBtn">Mulai Menulis</button>
+                    <button class="btn-secondary" id="loginBtn">Masuk</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <span class="hero-emoji">📖✨</span>
+            </div>
+        </section>
+
+        <!-- Fitur Section -->
+        <section class="features">
+            <h2 class="section-title">Kenapa NovelKita?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">✍️</div>
+                    <h3>Gampang Nulis</h3>
+                    <p>Editor yang simpel dan nyaman buat nulis ceritamu.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Komunitas</h3>
+                    <p>Dapatkan pembaca dan komentar dari sesama penikmat cerita.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Gratis Selamanya</h3>
+                    <p>Tanpa biaya. Tulis dan baca sebanyak yang kamu mau.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Bisa di HP</h3>
+                    <p>Install sebagai aplikasi dan baca kapan saja.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- MODAL LOGIN -->
+    <div id="loginModal" class="modal hidden">
+        <div class="modal-content">
+            <button class="modal-close" id="closeLoginModal">✕</button>
+            <h2 class="modal-title">Masuk ke NovelKita</h2>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label>Email / Username</label>
+                    <input type="text" id="loginEmail" placeholder="contoh@email.com atau username" required>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-primary full-width">Masuk</button>
+                <p class="modal-footer-text">Belum punya akun? <span id="switchToRegister">Daftar</span></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL REGISTER -->
+    <div id="registerModal" class="modal hidden">
+        <div class="modal-content">
+            <button class="modal-close" id="closeRegisterModal">✕</button>
+            <h2 class="modal-title">Daftar NovelKita</h2>
+            <form id="registerForm">
+                <div class="input-group">
+                    <label>Username</label>
+                    <input type="text" id="regUsername" placeholder="contoh: arka_senja" required>
+                    <small class="input-hint">Unik, tanpa spasi</small>
+                </div>
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" id="regEmail" placeholder="contoh@email.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="regPassword" placeholder="minimal 6 karakter" required>
+                </div>
+                <button type="submit" class="btn-primary full-width">Daftar</button>
+                <p class="modal-footer-text">Sudah punya akun? <span id="switchToLogin">Masuk</span></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="mock-data.js"></script>
+    <script src="auth.js"></script>
+    <script src="utils.js"></script>
+    <script src="theme.js"></script>
+</body>
+</html>
